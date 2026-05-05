@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Fliks - Your Daily Dose of Fashion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff4757;
+            --secondary: #2f3542;
+            --accent: #ffa502;
+            --gradient-start: #ff6b81;
+            --gradient-end: #ff4757;
+            --dark: #1e272e;
+            --light: #f1f2f6;
+            --white: #ffffff;
+            --success: #2ed573;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Noto Sans Bengali', sans-serif;
+            background: var(--light);
+            color: var(--secondary);
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            box-shadow: 0 5px 30px rgba(0,0,0,0.12);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            border-radius: 8px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .cart-btn {
+            position: relative;
+            background: none;
+            border: none;
+            font-size: 22px;
+            color: var(--secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 50%;
+        }
+
+        .cart-btn:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--primary);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            background: linear-gradient(135deg, var(--dark) 0%, #2d3436 50%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,71,87,0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,165,2,0.1) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            border-radius: 50%;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(135deg, var(--gradient-start), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(255,71,87,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,71,87,0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--dark);
+            border-color: var(--white);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 5px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating-badge {
+            position: absolute;
+            background: var(--white);
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .badge-1 {
+            top: 20%;
+            left: -20px;
+            animation-delay: 0s;
+        }
+
+        .badge-2 {
+            bottom: 20%;
+            right: -20px;
+            animation-delay: 2s;
+        }
+
+        .badge-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .badge-text {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--secondary);
+        }
+
+        .badge-text small {
+            display: block;
+            font-weight: 400;
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Categories */
+        .categories {
+            padding: 80px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--light), #fff);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 35px;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .category-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .category-card p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Products */
+        .products {
+            padding: 80px 20px;
+            background: var(--white);
+        }
+
+        .products-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 30px;
+            border: 2px solid #e0e0e0;
+            background: var(--white);
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--secondary);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--white);
+            border-color: transparent;
+            box-shadow: 0 5px 20px rgba(255,71,87,0.3);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-wishlist {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+            border: none;
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        .product-wishlist:hover,
+        .product-wishlist.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .product-image {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-overlay {
+            transform: translateY(0);
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .add-to-cart:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255,71,87,0.4);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            font-size: 12px;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .current-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .old-price {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .stars {
+            color: var(--accent);
+            font-size: 14px;
+        }
+
+        .rating-count {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* Features */
+        .features {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--dark), var(--secondary));
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-box:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: white;
+        }
+
+        .feature-box h3 {
+            color: var(--white);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+        }
+
+        /* WhatsApp CTA */
+        .whatsapp-cta {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whatsapp-cta::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+        }
+
+        .whatsapp-cta::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            bottom: -50px;
+            right: -50px;
+        }
+
+        .whatsapp-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .whatsapp-icon {
+            font-size: 80px;
+            color: white;
+            margin-bottom: 30px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .whatsapp-cta h2 {
+            font-size: 42px;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .whatsapp-cta p {
+            font-size: 20px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 40px;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 50px;
+            background: white;
+            color: #128c7e;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            padding: 80px 20px 30px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand img {
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-column h3 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+        }
+
+        /* Cart Sidebar */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            max-width: 100%;
+            height: 100%;
+            background: var(--white);
+            z-index: 2001;
+            transition: right 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 25px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-cart:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-info p {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .remove-item:hover {
+            color: var(--primary);
+        }
+
+        .cart-footer {
+            padding: 25px;
+            border-top: 1px solid #eee;
+            background: var(--white);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .cart-total span:last-child {
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255,71,87,0.3);
+        }
+
+        .whatsapp-checkout {
+            width: 100%;
+            padding: 18px;
+            background: #25d366;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .whatsapp-checkout:hover {
+            background: #128c7e;
+            transform: translateY(-2px);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .empty-cart i {
+            font-size: 60px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .empty-cart p {
+            color: #999;
+            font-size: 16px;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--dark);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            z-index: 3000;
+            opacity: 0;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast i {
+            color: var(--success);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content h1 {
+                font-size: 40px;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .hero-image {
+                display: none;
+            }
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .features-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            .features-container {
+                grid-template-columns: 1fr;
+            }
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            .section-header h2 {
+                font-size: 28px;
+            }
+            .cart-sidebar {
+                width: 100%;
+            }
+            .hero-btns {
+                flex-direction: column;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="/mnt/agents/upload/2008.png" alt="Style Fliks Logo">
+                <span class="logo-text">STYLE FLIKS</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#home">হোম</a></li>
+                <li><a href="#products">প্রোডাক্টস</a></li>
+                <li><a href="#categories">ক্যাটাগরি</a></li>
+                <li><a href="#features">ফিচারস</a></li>
+                <li><a href="#contact">যোগাযোগ</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="cart-btn" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>YOUR DAILY DOSE <br>OF <span>FASHION</span></h1>
+                <p>স্টাইলিশ ফ্যাশন আর লেটেস্ট গ্যাজেটস সবচেয়ে কম দামে। বাংলাদেশের সেরা অনলাইন শপিং ডেস্টিনেশন।</p>
+                <div class="hero-btns">
+                    <a href="#products" class="btn btn-primary">
+                        <i class="fas fa-shopping-bag"></i> শপিং শুরু করুন
+                    </a>
+                    <a href="https://wa.me/8801316811790" class="btn btn-outline" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp এ যোগাযোগ
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">প্রোডাক্ট</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">হ্যাপি কাস্টমার</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">সাপোর্ট</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&h=600&fit=crop" alt="Fashion Collection">
+                <div class="floating-badge badge-1">
+                    <div class="badge-icon"><i class="fas fa-fire"></i></div>
+                    <div class="badge-text">Hot Deals<small>Up to 50% OFF</small></div>
+                </div>
+                <div class="floating-badge badge-2">
+                    <div class="badge-icon"><i class="fas fa-truck"></i></div>
+                    <div class="badge-text">Free Delivery<small>All Over BD</small></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories" id="categories">
+        <div class="section-header fade-in">
+            <h2>ক্যাটাগরি অনুযায়ী শপিং</h2>
+            <p>আপনার পছন্দের ক্যাটাগরি থেকে বেছে নিন</p>
+        </div>
+        <div class="category-grid">
+            <div class="category-card fade-in" onclick="filterProducts('fashion')">
+                <div class="category-icon" style="color: #ff4757;">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <h3>ফ্যাশন</h3>
+                <p>পোশাক, জুতা, এক্সেসরিজ</p>
+            </div>
+            <div class="category-card fade-in" onclick="filterProducts('gadgets')">
+                <div class="category-icon" style="color: #2ed573;">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>গ্যাজেটস</h3>
+                <p>মোবাইল, ইলেকট্রনিক্স</p>
+            </div>
+            <div class="category-card fade-in" onclick="filterProducts('dropshipping')">
+                <div class="category-icon" style="color: #1e90ff;">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <h3>ড্রপশিপিং</h3>
+                <p>ট্রেন্ডিং প্রোডাক্টস</p>
+            </div>
+            <div class="category-card fade-in" onclick="filterProducts('all')">
+                <div class="category-icon" style="color: #ffa502;">
+                    <i class="fas fa-th-large"></i>
+                </div>
+                <h3>সব প্রোডাক্ট</h3>
+                <p>সব ক্যাটাগরি একসাথে</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products" id="products">
+        <div class="products-container">
+            <div class="section-header fade-in">
+                <h2>আমাদের প্রোডাক্টস</h2>
+                <p>সেরা মানের প্রোডাক্ট সবচেয়ে কম দামে</p>
+            </div>
+
+            <div class="filter-tabs fade-in">
+                <button class="filter-btn active" onclick="filterProducts('all')">সব</button>
+                <button class="filter-btn" onclick="filterProducts('fashion')">ফ্যাশন</button>
+                <button class="filter-btn" onclick="filterProducts('gadgets')">গ্যাজেটস</button>
+                <button class="filter-btn" onclick="filterProducts('dropshipping')">ড্রপশিপিং</button>
+            </div>
+
+            <div class="product-grid" id="productGrid">
+                <!-- Products will be loaded via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="feature-box fade-in">
+                <div class="feature-icon"><i class="fas fa-truck"></i></div>
+                <h3>ফ্রি ডেলিভারি</h3>
+                <p>সারা বাংলাদেশে ফ্রি ডেলিভারি</p>
+            </div>
+            <div class="feature-box fade-in">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>সিকিউর পেমেন্ট</h3>
+                <p>১০০% নিরাপদ পেমেন্ট সিস্টেম</p>
+            </div>
+            <div class="feature-box fade-in">
+                <div class="feature-icon"><i class="fas fa-undo"></i></div>
+                <h3>ইজি রিটার্ন</h3>
+                <p>৭ দিনের মধ্যে রিটার্ন পলিসি</p>
+            </div>
+            <div class="feature-box fade-in">
+                <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                <h3>24/7 সাপোর্ট</h3>
+                <p>যেকোনো সময় সাহায্য পাবেন</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp CTA -->
+    <section class="whatsapp-cta" id="contact">
+        <div class="whatsapp-content">
+            <i class="fab fa-whatsapp whatsapp-icon"></i>
+            <h2>WhatsApp এ অর্ডার করুন</h2>
+            <p>আপনার পছন্দের প্রোডাক্টটি সরাসরি WhatsApp এ অর্ডার করুন। দ্রুত ডেলিভারি পাবেন!</p>
+            <a href="https://wa.me/8801316811790?text=Hi%20Style%20Fliks!%20I%20want%20to%20place%20an%20order." class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> এখনই অর্ডার করুন
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="/mnt/agents/upload/2008.png" alt="Style Fliks">
+                <p>Style Fliks - বাংলাদেশের সেরা অনলাইন শপিং ডেস্টিনেশন। ফ্যাশন, গ্যাজেটস এবং ড্রপশিপিং প্রোডাক্ট সবচেয়ে কম দামে।</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/1bDRCZGJV9/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/stylefliks" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/8801316811790" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>ক্যাটাগরি</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> ফ্যাশন</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> গ্যাজেটস</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> ড্রপশিপিং</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> নতুন আসা</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>কুইক লিংক</h3>
+                <ul>
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> হোম</a></li>
+                    <li><a href="#products"><i class="fas fa-chevron-right"></i> প্রোডাক্টস</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> আমাদের সম্পর্কে</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> যোগাযোগ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>যোগাযোগ</h3>
+                <ul>
+                    <li><a href="tel:01316811790"><i class="fas fa-phone"></i> 01316-811790</a></li>
+                    <li><a href="https://wa.me/8801316811790"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> ঢাকা, বাংলাদেশ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Style Fliks. All Rights Reserved. | Made with ❤️ in Bangladesh</p>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-cart"></i> আপনার কার্ট</h2>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-basket"></i>
+                <p>আপনার কার্ট খালি</p>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <div class="cart-total">
+                <span>মোট:</span>
+                <span id="cartTotal">৳0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">
+                <i class="fas fa-check-circle"></i> অর্ডার কনফার্ম
+            </button>
+            <a href="https://wa.me/8801316811790" class="whatsapp-checkout" target="_blank" id="whatsappCheckout">
+                <i class="fab fa-whatsapp"></i> WhatsApp এ অর্ডার করুন
+            </a>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">প্রোডাক্ট কার্টে যোগ হয়েছে!</span>
+    </div>
+
+    <script>
+        // Product Data
+        const products = [
+            {
+                id: 1,
+                name: "Wireless Bluetooth Earbuds",
+                price: 850,
+                oldPrice: 1200,
+                category: "gadgets",
+                image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop",
+                badge: "Hot",
+                rating: 4.5,
+                reviews: 128
+            },
+            {
+                id: 2,
+                name: "Smart Fitness Watch",
+                price: 1200,
+                oldPrice: 1800,
+                category: "gadgets",
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop",
+                badge: "New",
+                rating: 4.8,
+                reviews: 95
+            },
+            {
+                id: 3,
+                name: "Premium Cotton T-Shirt",
+                price: 450,
+                oldPrice: 650,
+                category: "fashion",
+                image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop",
+                badge: "Sale",
+                rating: 4.3,
+                reviews: 210
+            },
+            {
+                id: 4,
+                name: "Stylish Sunglasses",
+                price: 550,
+                oldPrice: 800,
+                category: "fashion",
+                image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop",
+                badge: "",
+                rating: 4.6,
+                reviews: 156
+            },
+            {
+                id: 5,
+                name: "Portable Power Bank 10000mAh",
+                price: 1100,
+                oldPrice: 1500,
+                category: "gadgets",
+                image: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&h=400&fit=crop",
+                badge: "Best Seller",
+                rating: 4.7,
+                reviews: 342
+            },
+            {
+                id: 6,
+                name: "Denim Jacket for Men",
+                price: 1500,
+                oldPrice: 2200,
+                category: "fashion",
+                image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=400&fit=crop",
+                badge: "",
+                rating: 4.4,
+                reviews: 89
+            },
+            {
+                id: 7,
+                name: "LED Desk Lamp with USB",
+                price: 650,
+                oldPrice: 950,
+                category: "dropshipping",
+                image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&h=400&fit=crop",
+                badge: "Trending",
+                rating: 4.2,
+                reviews: 76
+            },
+            {
+                id: 8,
+                name: "Women's Casual Kurti",
+                price: 750,
+                oldPrice: 1100,
+                category: "fashion",
+                image: "https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=400&h=400&fit=crop",
+                badge: "",
+                rating: 4.5,
+                reviews: 134
+            },
+            {
+                id: 9,
+                name: "Bluetooth Speaker Mini",
+                price: 950,
+                oldPrice: 1400,
+                category: "gadgets",
+                image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop",
+                badge: "Hot",
+                rating: 4.6,
+                reviews: 198
+            },
+            {
+                id: 10,
+                name: "Trending Phone Case",
+                price: 350,
+                oldPrice: 500,
+                category: "dropshipping",
+                image: "https://images.unsplash.com/photo-1603313011101-320f26a4f6f6?w=400&h=400&fit=crop",
+                badge: "New",
+                rating: 4.1,
+                reviews: 245
+            },
+            {
+                id: 11,
+                name: "Men's Leather Wallet",
+                price: 550,
+                oldPrice: 800,
+                category: "fashion",
+                image: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=400&h=400&fit=crop",
+                badge: "",
+                rating: 4.4,
+                reviews: 167
+            },
+            {
+                id: 12,
+                name: "Wireless Charger Pad",
+                price: 750,
+                oldPrice: 1100,
+                category: "gadgets",
+                image: "https://images.unsplash.com/photo-1586816879360-004f5b0c51e3?w=400&h=400&fit=crop",
+                badge: "Sale",
+                rating: 4.3,
+                reviews: 112
+            }
+        ];
+
+        // Cart State
+        let cart = [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts('all');
+            updateCartUI();
+
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Fade in animation
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        });
+
+        // Render Products
+        function renderProducts(category) {
+            const grid = document.getElementById('productGrid');
+            const filtered = category === 'all' ? products : products.filter(p => p.category === category);
+
+            grid.innerHTML = filtered.map(product => `
+                <div class="product-card fade-in visible">
+                    ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                    <button class="product-wishlist" onclick="toggleWishlist(this)">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                        <div class="product-overlay">
+                            <button class="add-to-cart" onclick="addToCart(${product.id})">
+                                <i class="fas fa-cart-plus"></i> কার্টে যোগ করুন
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category.toUpperCase()}</div>
+                        <h3 class="product-name">${product.name}</h3>
+                        <div class="product-price">
+                            <span class="current-price">৳${product.price}</span>
+                            ${product.oldPrice ? `<span class="old-price">৳${product.oldPrice}</span>` : ''}
+                        </div>
+                        <div class="product-rating">
+                            <span class="stars">${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '½' : ''}</span>
+                            <span class="rating-count">(${product.reviews} রিভিউ)</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Products
+        function filterProducts(category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.includes(getCategoryName(category)) || (category === 'all' && btn.textContent.includes('সব'))) {
+                    btn.classList.add('active');
+                }
+            });
+
+            renderProducts(category);
+        }
+
+        function getCategoryName(cat) {
+            const names = { 'fashion': 'ফ্যাশন', 'gadgets': 'গ্যাজেটস', 'dropshipping': 'ড্রপশিপিং' };
+            return names[cat] || '';
+        }
+
+        // Add to Cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartUI();
+            showToast(`${product.name} কার্টে যোগ হয়েছে!`);
+        }
+
+        // Update Cart UI
+        function updateCartUI() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartFooter = document.getElementById('cartFooter');
+            const cartTotal = document.getElementById('cartTotal');
+            const whatsappCheckout = document.getElementById('whatsappCheckout');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            cartCount.textContent = totalItems;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-basket"></i>
+                        <p>আপনার কার্ট খালি</p>
+                    </div>
+                `;
+                cartFooter.style.display = 'none';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <p>৳${item.price * item.quantity}</p>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            <button class="remove-item" onclick="removeFromCart(${item.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+
+                cartFooter.style.display = 'block';
+                cartTotal.textContent = `৳${totalPrice}`;
+
+                // Update WhatsApp link with cart items
+                const message = encodeURIComponent(`Hi Style Fliks! I want to order:
+${cart.map(item => `- ${item.name} (x${item.quantity}) - ৳${item.price * item.quantity}`).join('\n')}
+
+Total: ৳${totalPrice}`);
+                whatsappCheckout.href = `https://wa.me/8801316811790?text=${message}`;
+            }
+        }
+
+        // Update Quantity
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        // Remove from Cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+            showToast('প্রোডাক্ট কার্ট থেকে সরানো হয়েছে');
+        }
+
+        // Toggle Cart
+        function toggleCart() {
+            document.getElementById('cartOverlay').classList.toggle('active');
+            document.getElementById('cartSidebar').classList.toggle('active');
+        }
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) {
+                showToast('আপনার কার্ট খালি!');
+                return;
+            }
+            toggleCart();
+            showToast('অর্ডার কনফার্মেশনের জন্য WhatsApp এ পাঠানো হয়েছে!');
+            setTimeout(() => {
+                document.getElementById('whatsappCheckout').click();
+            }, 1000);
+        }
+
+        // Toggle Wishlist
+        function toggleWishlist(btn) {
+            btn.classList.toggle('active');
+            const icon = btn.querySelector('i');
+            if (btn.classList.contains('active')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                showToast('প্রোডাক্ট Wishlist এ যোগ হয়েছে!');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+            }
+        }
+
+        // Show Toast
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.right = '0';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.background = 'white';
+            navLinks.style.padding = '20px';
+            navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
